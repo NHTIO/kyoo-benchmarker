@@ -2,11 +2,12 @@ import { logger, inspect } from "../providers/logger";
 import { KyooConnection } from "@nhtio/kyoo";
 import { scriptAbortController } from "./cli";
 import { env } from "../env";
+import { inspect as nodeInspect } from "node:util";
 import { getDatabase } from "../lib/utils";
 import type { Options } from "./cli";
 import type { Config } from "@nestmtx/config";
 
-export const runProducer = async (opts: Options, config: Config) => {
+export const runConsumer = async (opts: Options, config: Config) => {
   const database = getDatabase(config.get("database"));
   const configuration = config.get(opts.client!);
   const connection = new KyooConnection(configuration);
@@ -40,46 +41,30 @@ export const runProducer = async (opts: Options, config: Config) => {
     const to = 1000;
     setTimeout(processRate, to);
   };
-  const doEnqueue = async () => {
-    if (scriptAbortController.signal.aborted) {
-      return;
-    }
-    const jobs = Array(100)
-      .fill(0)
-      .map((_, i) => ({
-        payload: {
-          now: new Date(),
-          index: i,
-        },
-      }));
-    await Promise.all(
-      jobs.map(async (job) => {
-        return await queue.jobs.enqueue(job);
-      }),
-    );
-    count += jobs.length;
-    const total = await queue.jobs.enqueued();
-    logger.debug(
-      `Enqueued ${jobs.length} in ${opts.client} jobs, total enqueued: ${total}`,
-    );
-    if (scriptAbortController.signal.aborted) {
-      return;
-    }
-    const to = 1000;
-    logger.debug(
-      `Enqueued ${jobs.length} jobs in ${opts.client}, waiting ${to}ms to enqueue again`,
-    );
-    setTimeout(doEnqueue, to);
-  };
+  const worker = queue.worker(
+    async ({ job }, { ack }) => {
+      logger.debug(
+        `Processing job ${job.id} with payload: ${nodeInspect(job.payload, { depth: 10, colors: true })}`,
+      );
+      count++;
+      await ack();
+    },
+    {
+      autoStart: false,
+      blocking: env.get("KYOO_WORKER_BLOCKING", true),
+      noAck: env.get("KYOO_WORKER_NOACK", false),
+    },
+  );
 
-  logger.info("Establishing producer connection");
+  logger.info("Establishing consumer connection");
   connection.connect().then((connected) => {
     if (connected) {
-      logger.info("Producer connection established");
-      doEnqueue();
-      processRate();
+      logger.info("Consumer connection established");
+      worker.resume().then(() => {
+        processRate();
+      });
     } else {
-      logger.error("Producer connection failed");
+      logger.error("Consumer connection failed");
       scriptAbortController.abort();
       return;
     }

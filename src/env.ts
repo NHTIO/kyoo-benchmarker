@@ -74,6 +74,7 @@ const envSchema: EnvSchema = {
   */
   KYOO_WORKER_NOACK: Joi.boolean().optional().default(false),
   KYOO_WORKER_BLOCKING: Joi.boolean().optional().default(true),
+  KYOO_QUEUE_NAME: Joi.string().default("kyoo-benchmark"),
 };
 
 export const env = new Env(envSchema);

@@ -15,8 +15,11 @@ importers:
         specifier: ^1.0.8
         version: 1.0.8
       '@nhtio/kyoo':
-        specifier: ^1.20250403.3
-        version: 1.20250403.3
+        specifier: ^1.20250403.4
+        version: 1.20250403.4
+      cli-table:
+        specifier: ^0.3.11
+        version: 0.3.11
       command-line-args:
         specifier: ^6.0.0
         version: 6.0.0
@@ -41,6 +44,12 @@ importers:
       pg:
         specifier: ^8.14.1
         version: 8.14.1
+      pidusage:
+        specifier: ^4.0.0
+        version: 4.0.0
+      pretty-bytes:
+        specifier: ^6.1.1
+        version: 6.1.1
       reflect-metadata:
         specifier: ^0.2.2
         version: 0.2.2
@@ -63,6 +72,9 @@ importers:
       '@types/cli-color':
         specifier: ^2.0.6
         version: 2.0.6
+      '@types/cli-table':
+        specifier: ^0.3.4
+        version: 0.3.4
       '@types/command-line-args':
         specifier: ^5.2.3
         version: 5.2.3
@@ -72,6 +84,9 @@ importers:
       '@types/node':
         specifier: ^22.5.4
         version: 22.5.4
+      '@types/pidusage':
+        specifier: ^2.0.5
+        version: 2.0.5
       '@types/source-map-support':
         specifier: ^0.5.10
         version: 0.5.10
@@ -531,8 +546,8 @@ packages:
     resolution: {integrity: sha512-tlDAlsUi90HCJcGI10B6SHlwOprXLSlU2UmZRcGHvPNAk+KtH5tiF52FOnCgNjmXQy1XznbPtDNxXZuoKeLOAA==}
     engines: {node: '>=18.0.0'}
 
-  '@nhtio/kyoo@1.20250403.3':
-    resolution: {integrity: sha512-yGWQR6Z0Rc/nqaxIPkg01ipymFWGwu1CJcnjHod1vsVdBdX5Ehat9vB+u6pcdpDY3dEbpgUU7ZoUibFRGKnv5g==}
+  '@nhtio/kyoo@1.20250403.4':
+    resolution: {integrity: sha512-g6LHiGXzrgbdj7WZ8X0uRTOMSWlad9gRV7C1FG1RZFMtT+Vpn4/EQyKaut+Z6TWndu2uQyTE02IKSxBEr5QRjw==}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -840,6 +855,9 @@ packages:
   '@types/cli-color@2.0.6':
     resolution: {integrity: sha512-uLK0/0dOYdkX8hNsezpYh1gc8eerbhf9bOKZ3e24sP67703mw9S14/yW6mSTatiaKO9v+mU/a1EVy4rOXXeZTA==}
 
+  '@types/cli-table@0.3.4':
+    resolution: {integrity: sha512-GsALrTL69mlwbAw/MHF1IPTadSLZQnsxe7a80G8l4inN/iEXCOcVeT/S7aRc6hbhqzL9qZ314kHPDQnQ3ev+HA==}
+
   '@types/command-line-args@5.2.3':
     resolution: {integrity: sha512-uv0aG6R0Y8WHZLTamZwtfsDLVRnOa+n+n5rEvFWL5Na5gZ8V2Teab/duDPFzIIIhs9qizDpcavCusCLJZu62Kw==}
 
@@ -854,6 +872,9 @@ packages:
 
   '@types/node@22.5.4':
     resolution: {integrity: sha512-FDuKUJQm/ju9fT/SeX/6+gBzoPzlVCzfzmGkwKvRHQVxi4BntVbyIwf6a4Xn62mrvndLiml6z/UBXIdEVjQLXg==}
+
+  '@types/pidusage@2.0.5':
+    resolution: {integrity: sha512-MIiyZI4/MK9UGUXWt0jJcCZhVw7YdhBuTOuqP/BjuLDLZ2PmmViMIQgZiWxtaMicQfAz/kMrZ5T7PKxFSkTeUA==}
 
   '@types/readable-stream@4.0.18':
     resolution: {integrity: sha512-21jK/1j+Wg+7jVw1xnSwy/2Q1VgVjWuFssbYGTREPUBeZ+rqVFl2udq0IkxzPC0ZhOzVceUbyIACFZKLqKEBlA==}
@@ -1088,6 +1109,10 @@ packages:
     resolution: {integrity: sha512-zlnpg0jNcibNrO7GG9IeHH7maWFeCz+Ja1wx/7tZNU5ASSSSZ+/qZciM0/LHCYxSdqv5h2sdbQ/PXYdOuetXvA==}
     engines: {node: '>=0.10'}
 
+  cli-table@0.3.11:
+    resolution: {integrity: sha512-IqLQi4lO0nIB4tcdTpN4LCB9FI3uqrJZK7RC515EnhZ6qBaglkIgICb1wjeAqpdoOabm1+SuQtkXIPdYC93jhQ==}
+    engines: {node: '>= 0.2.0'}
+
   cluster-key-slot@1.1.2:
     resolution: {integrity: sha512-RMr0FhtfXemyinomL4hrWcYJxmX6deFdCxpJzhDttxgO1+bcCnkk+9drydLVDmAMG7NE6aN/fl4F7ucU/90gAA==}
     engines: {node: '>=0.10.0'}
@@ -1117,6 +1142,10 @@ packages:
 
   colorette@2.0.19:
     resolution: {integrity: sha512-3tlv/dIP7FWvj3BsbHrGLJ6l/oKh1O3TcgBqMn+yyCagOxc23fyzDS6HypQbgxWbkpDnf52p1LuR4eWDQ/K9WQ==}
+
+  colors@1.0.3:
+    resolution: {integrity: sha512-pFGrxThWcWQ2MsAz6RtgeWe4NK2kUE1WfsrvvlctdII745EW9I0yflqhe7++M5LEc7bV2c/9/5zc8sFcpL0Drw==}
+    engines: {node: '>=0.1.90'}
 
   colorspace@1.1.4:
     resolution: {integrity: sha512-BgvKJiuVu1igBUF2kEjRCZXol6wiiGbY5ipL/oVPwm0BL9sIpMIzM8IK7vwuxIIzOXMV3Ey5w+vxhm0rR/TN8w==}
@@ -2109,6 +2138,10 @@ packages:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
 
+  pidusage@4.0.0:
+    resolution: {integrity: sha512-89hVJc5gq157puLYZaO3CH0qfGyDfbDG1KFCE4lCSwK0l1EuEbNa4pIJJXL93ltU5SsYia/DHJUgMY2qE4XRQg==}
+    engines: {node: '>=18'}
+
   postcss@8.4.45:
     resolution: {integrity: sha512-7KTLTdzdZZYscUc65XmjFiB73vBhBfbPztCYdUNvlaso9PrzjzcmjqBPR0lNGkcVlcO4BjiO5rK/qNz+XAen1Q==}
     engines: {node: ^10 || ^12 || >=14}
@@ -2146,6 +2179,10 @@ packages:
     resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
     engines: {node: '>=14'}
     hasBin: true
+
+  pretty-bytes@6.1.1:
+    resolution: {integrity: sha512-mQUvGU6aUFQ+rNvTIAcZuWGRT9a6f6Yrg9bHs4ImKF+HZCEK+plBvnAZYSIQztknZF2qnzNtr6F8s0+IuptdlQ==}
+    engines: {node: ^14.13.1 || >=16.0.0}
 
   pretty-ms@9.1.0:
     resolution: {integrity: sha512-o1piW0n3tgKIKCwk2vpM/vOV13zjJzvP37Ioze54YlTHE06m4tjEbzg9WsKkvTuyYln2DHjo5pY4qrZGI0otpw==}
@@ -3272,7 +3309,7 @@ snapshots:
       dotenv: 16.4.5
       joi: 17.13.3
 
-  '@nhtio/kyoo@1.20250403.3':
+  '@nhtio/kyoo@1.20250403.4':
     dependencies:
       '@aws-sdk/client-sqs': 3.777.0
       '@cloudamqp/amqp-client': 3.2.0
@@ -3652,6 +3689,8 @@ snapshots:
 
   '@types/cli-color@2.0.6': {}
 
+  '@types/cli-table@0.3.4': {}
+
   '@types/command-line-args@5.2.3': {}
 
   '@types/command-line-usage@5.0.4': {}
@@ -3668,6 +3707,8 @@ snapshots:
   '@types/node@22.5.4':
     dependencies:
       undici-types: 6.19.8
+
+  '@types/pidusage@2.0.5': {}
 
   '@types/readable-stream@4.0.18':
     dependencies:
@@ -3967,6 +4008,10 @@ snapshots:
       memoizee: 0.4.17
       timers-ext: 0.1.8
 
+  cli-table@0.3.11:
+    dependencies:
+      colors: 1.0.3
+
   cluster-key-slot@1.1.2: {}
 
   color-convert@1.9.3:
@@ -3995,6 +4040,8 @@ snapshots:
       color-string: 1.9.1
 
   colorette@2.0.19: {}
+
+  colors@1.0.3: {}
 
   colorspace@1.1.4:
     dependencies:
@@ -5076,6 +5123,10 @@ snapshots:
 
   picomatch@2.3.1: {}
 
+  pidusage@4.0.0:
+    dependencies:
+      safe-buffer: 5.2.1
+
   postcss@8.4.45:
     dependencies:
       nanoid: 3.3.7
@@ -5114,6 +5165,8 @@ snapshots:
       fast-diff: 1.3.0
 
   prettier@3.3.3: {}
+
+  pretty-bytes@6.1.1: {}
 
   pretty-ms@9.1.0:
     dependencies:

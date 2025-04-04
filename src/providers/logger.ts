@@ -78,5 +78,15 @@ export async function prettyPrintError(error: any) {
   logger.error(youchTerminal(await youch.toJSON(), { displayShortPath: true }));
 }
 
-export const inspect = (i: unknown) =>
-  logger.info(nodeInspect(i, { depth: 20, colors: true }));
+type LOG_LEVEL =
+  | "emerg"
+  | "alert"
+  | "crit"
+  | "error"
+  | "warning"
+  | "notice"
+  | "info"
+  | "debug";
+
+export const inspect = (i: unknown, fn: LOG_LEVEL = "info") =>
+  logger[fn](nodeInspect(i, { depth: 20, colors: true }));

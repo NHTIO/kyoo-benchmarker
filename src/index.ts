@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import * as sourceMapSupport from "source-map-support";
-import { prettyPrintError, inspect, logger } from "./providers/logger";
+import { prettyPrintError, logger } from "./providers/logger";
 import { cleanup, run, scriptAbortController } from "./services/cli";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -8,6 +8,7 @@ import { existsSync } from "node:fs";
 import { Config } from "@nestmtx/config";
 import { mainThread } from "./services/main";
 import { runProducer } from "./services/producer";
+import { runConsumer } from "./services/consumer";
 
 sourceMapSupport.install({
   handleUncaughtExceptions: false,
@@ -61,8 +62,7 @@ run()
       if (opts.side === "producer") {
         await runProducer(opts, config);
       } else {
-        logger.error("Consumer is not implemented yet");
-        return;
+        await runConsumer(opts, config);
       }
       // inspect({
       //   baseDir: BASEDIR,
