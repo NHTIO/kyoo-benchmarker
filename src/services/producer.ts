@@ -54,7 +54,7 @@ export const runProducer = async (opts: Options, config: Config) => {
       }));
     await Promise.all(
       jobs.map(async (job) => {
-        return await queue.jobs.enqueue(job);
+        return await queue.jobs.enqueue(job).catch(() => {});
       }),
     );
     count += jobs.length;
