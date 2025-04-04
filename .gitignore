@@ -2,3 +2,5 @@ node_modules
 dist
 .env
 bin/test.ts
+.clinic
+*.log

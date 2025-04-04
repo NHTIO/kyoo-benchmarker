@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@nestmtx/config": "^1.0.8",
-    "@nhtio/kyoo": "^1.20250403.4",
+    "@nhtio/kyoo": "^1.20250404.0",
     "cli-table": "^0.3.11",
     "command-line-args": "^6.0.0",
     "command-line-usage": "^7.0.3",
