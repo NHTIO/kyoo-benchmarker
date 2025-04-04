@@ -215,9 +215,15 @@ export const mainThread = async (
       return a.client.localeCompare(b.client);
     });
     const [amqpJobs, redisJobs, sqsJobs] = await Promise.all([
-      amqpQueue.jobs.enqueued(),
-      redisQueue.jobs.enqueued(),
-      sqsQueue.jobs.enqueued(),
+      amqpQueue.jobs.enqueued().catch(() => {
+        return 0;
+      }),
+      redisQueue.jobs.enqueued().catch(() => {
+        return 0;
+      }),
+      sqsQueue.jobs.enqueued().catch(() => {
+        return 0;
+      }),
     ]);
     const jobCounts = new Map<KyooClient, number>();
     jobCounts.set("amqp", amqpJobs);
