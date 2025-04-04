@@ -223,6 +223,17 @@ export const mainThread = async (
     jobCounts.set("amqp", amqpJobs);
     jobCounts.set("bullmq", redisJobs);
     jobCounts.set("sqs", sqsJobs);
+    const purgePromises: Array<Promise<void>> = [];
+    if (amqpJobs > 1000) {
+      purgePromises.push(amqpQueue.jobs.purge());
+    }
+    if (redisJobs > 1000) {
+      purgePromises.push(redisQueue.jobs.purge());
+    }
+    if (sqsJobs > 1000) {
+      purgePromises.push(sqsQueue.jobs.purge());
+    }
+    await Promise.all(purgePromises);
     const table = new clit({
       head: [
         "Adapter",
