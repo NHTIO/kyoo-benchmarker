@@ -4,3 +4,4 @@ dist
 bin/test.ts
 .clinic
 *.log
+pnpm-lock.yaml
